@@ -15,5 +15,7 @@ import * as Day0701 from "./solutionsByDay/Day0701";
 import * as Day0702 from "./solutionsByDay/Day0702";
 import * as Day0801 from "./solutionsByDay/Day0801";
 import * as Day0802 from "./solutionsByDay/Day0802";
+import * as Day0901 from "./solutionsByDay/Day0901";
+import * as Day0902 from "./solutionsByDay/Day0902";
 
-void Day0502.runSolution();
+void Day0902.runSolution();
