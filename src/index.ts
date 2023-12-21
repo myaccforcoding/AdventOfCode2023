@@ -17,5 +17,15 @@ import * as Day0801 from "./solutionsByDay/Day0801";
 import * as Day0802 from "./solutionsByDay/Day0802";
 import * as Day0901 from "./solutionsByDay/Day0901";
 import * as Day0902 from "./solutionsByDay/Day0902";
+import * as Day1001 from "./solutionsByDay/Day1001";
+import * as Day1002 from "./solutionsByDay/Day1002";
+import * as Day1101 from "./solutionsByDay/Day1101";
+import * as Day1102 from "./solutionsByDay/Day1102";
+import * as Day1201 from "./solutionsByDay/Day1201";
+import * as Day1202 from "./solutionsByDay/Day1202";
+import * as Day1301 from "./solutionsByDay/Day1301";
+import * as Day1302 from "./solutionsByDay/Day1302";
+import * as Day1401 from "./solutionsByDay/Day1401";
+import * as Day1402 from "./solutionsByDay/Day1402";
 
-void Day0902.runSolution();
+void Day1401.runSolution();

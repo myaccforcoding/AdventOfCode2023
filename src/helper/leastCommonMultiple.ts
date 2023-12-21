@@ -2,7 +2,7 @@ import { factorize } from "./factorization";
 
 type PrimeFactorAndCount = Record<string, number>;
 
-export function calculateLCM(numbers: number[]): number {
+export function calculateLeastCommonMultiple(numbers: number[]): number {
   const primesToCalculateLCM: PrimeFactorAndCount = {};
 
   numbers.forEach((numberToFactorize) => {

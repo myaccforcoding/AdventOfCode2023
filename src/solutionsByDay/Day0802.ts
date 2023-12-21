@@ -1,5 +1,5 @@
+import { calculateLeastCommonMultiple } from "../helper/leastCommonMultiple";
 import { readLocalFile } from "../helper/localFileReader";
-import { calculateLCM } from "../helper/lcmCalculator";
 
 export async function runSolution(): Promise<void> {
   const lines = await readLocalFile("src\\inputFiles\\Day08.txt");
@@ -28,5 +28,5 @@ export async function runSolution(): Promise<void> {
     jumpsPerStartingKeyToFindFinish.push(counter);
   });
 
-  console.log(calculateLCM(jumpsPerStartingKeyToFindFinish));
+  console.log(calculateLeastCommonMultiple(jumpsPerStartingKeyToFindFinish));
 }
