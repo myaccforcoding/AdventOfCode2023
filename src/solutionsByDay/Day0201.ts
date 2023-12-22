@@ -8,26 +8,33 @@ export async function runSolution(): Promise<number> {
     const lines = await readLocalFile("src\\inputFiles\\Day02.txt");
     let totalSum = 0;
     lines.forEach((line) => {
-        const splitGameAndCumbesCount = line.split(": ");
-        const countAndColor = splitGameAndCumbesCount[1]
+        const gameAndRevealedCubes = line.split(": ");
+        const gameId = gameAndRevealedCubes[0].split(" ")[1];
+
+        const cubesCountAndColor = gameAndRevealedCubes[1]
             .split(/[,;]\s*/)
             .filter((item) => !item.includes(",") && !item.includes(";"));
-        const counts: ColorAndCount = { red: 0, green: 0, blue: 0 };
 
-        countAndColor.forEach((cube) => {
+        const currentCubeCountPerColor: ColorAndCount = {
+            red: 0,
+            green: 0,
+            blue: 0,
+        };
+
+        cubesCountAndColor.forEach((cube) => {
             const [count, color] = cube.split(" ");
-            counts[color] =
-                parseInt(count) > counts[color]
+            currentCubeCountPerColor[color] =
+                parseInt(count) > currentCubeCountPerColor[color]
                     ? parseInt(count)
-                    : counts[color];
+                    : currentCubeCountPerColor[color];
         });
 
         if (
-            counts.red <= maxCountPerColor.red &&
-            counts.green <= maxCountPerColor.green &&
-            counts.blue <= maxCountPerColor.blue
+            currentCubeCountPerColor.red <= maxCountPerColor.red &&
+            currentCubeCountPerColor.green <= maxCountPerColor.green &&
+            currentCubeCountPerColor.blue <= maxCountPerColor.blue
         ) {
-            totalSum += parseInt(splitGameAndCumbesCount[0].split(" ")[1]);
+            totalSum += parseInt(gameId);
         }
     });
 
