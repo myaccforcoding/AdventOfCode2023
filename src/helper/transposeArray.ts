@@ -3,16 +3,16 @@
 // input:    456         output:     258
 //          789                     369
 export function transposeArray(array: string[]): string[] {
-  const numRows = array[0].length;
-  const transposedArray: string[] = [];
+    const numRows = array[0].length;
+    const transposedArray: string[] = [];
 
-  for (let i = 0; i < numRows; i++) {
-    let newRow = "";
-    for (const row of array) {
-      newRow += row[i];
+    for (let i = 0; i < numRows; i++) {
+        let newRow = "";
+        for (const row of array) {
+            newRow += row[i];
+        }
+        transposedArray.push(newRow);
     }
-    transposedArray.push(newRow);
-  }
 
-  return transposedArray;
+    return transposedArray;
 }
