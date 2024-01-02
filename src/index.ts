@@ -29,9 +29,11 @@ import * as Day1401 from "./solutionsByDay/Day1401";
 import * as Day1402 from "./solutionsByDay/Day1402";
 import * as Day1501 from "./solutionsByDay/Day1501";
 import * as Day1502 from "./solutionsByDay/Day1502";
+import * as Day1601 from "./solutionsByDay/Day1601";
+import * as Day1602 from "./solutionsByDay/Day1602";
 
 async function logSolution(): Promise<void> {
-    console.log(await Day1502.runSolution());
+    console.log(await Day1601.runSolution());
 }
 
 logSolution().catch((err) => {

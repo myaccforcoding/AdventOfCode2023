@@ -28,6 +28,8 @@ import * as Day1401 from "../solutionsByDay/Day1401";
 import * as Day1402 from "../solutionsByDay/Day1402";
 import * as Day1501 from "../solutionsByDay/Day1501";
 import * as Day1502 from "../solutionsByDay/Day1502";
+import * as Day1601 from "../solutionsByDay/Day1601";
+import * as Day1602 from "../solutionsByDay/Day1602";
 
 describe("Day 01", () => {
     test("Part 01", async () => {
@@ -234,6 +236,20 @@ describe("Day 15", () => {
 
     test("Part 02", async () => {
         const actual = await Day1502.runSolution();
+        const expected = 237806;
+        expect(actual).toBe(expected);
+    });
+});
+
+describe("Day 16", () => {
+    test("Part 01", async () => {
+        const actual = await Day1601.runSolution();
+        const expected = 513172;
+        expect(actual).toBe(expected);
+    });
+
+    test("Part 02", async () => {
+        const actual = await Day1602.runSolution();
         const expected = 237806;
         expect(actual).toBe(expected);
     });

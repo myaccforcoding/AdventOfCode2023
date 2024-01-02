@@ -16,10 +16,15 @@ export async function runSolution(): Promise<number> {
     lines.forEach((line, index) => {
         // we start at -1 since if there is no # on row 0 there is a virtual # at -1 because round rocks do not fall off
         for (let i = 0; i < line.length; i++) {
-            rockIndicesByColumn[i] = {
-                cubeRocksRowIndex: [-1],
-                roundRocksRowIndex: [],
-            };
+            if (
+                rockIndicesByColumn[i] === undefined ||
+                rockIndicesByColumn[i] === null
+            ) {
+                rockIndicesByColumn[i] = {
+                    cubeRocksRowIndex: [-1],
+                    roundRocksRowIndex: [],
+                };
+            }
 
             if (line[i] === cubeRockChar)
                 rockIndicesByColumn[i].cubeRocksRowIndex.push(index);
