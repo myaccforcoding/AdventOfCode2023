@@ -5,7 +5,7 @@ export async function runSolution(): Promise<number> {
     const lines = await readLocalFile("src\\inputFiles\\Day08.txt");
     const threeLetterRegex = /[A-Z,1-9]{3}/g;
 
-    const instructon = lines[0].split("").map((char) => (char === "L" ? 0 : 1));
+    const instruction = lines[0].split("").map((char) => (char === "L" ? 0 : 1));
     const graph: Record<string, string[]> = {};
 
     lines.splice(2).forEach((line) => {
@@ -24,7 +24,7 @@ export async function runSolution(): Promise<number> {
 
         while (!currentKey.endsWith("Z")) {
             currentKey =
-                graph[currentKey][instructon[counter % instructon.length]];
+                graph[currentKey][instruction[counter % instruction.length]];
             counter++;
         }
 

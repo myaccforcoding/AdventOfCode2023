@@ -6,10 +6,10 @@ interface Coordinate {
     y: number;
 }
 
-function expand(curentInput: string[]): string[] {
+function expand(currentInput: string[]): string[] {
     const expanded: string[] = [];
 
-    curentInput.forEach((line) => {
+    currentInput.forEach((line) => {
         if (!line.includes("#")) {
             expanded.push(line);
         }

@@ -32,7 +32,7 @@ function countInside(
     loopEdges: Coordinate[],
     startNodeSymbol: string,
 ): number {
-    let countOfInsigeTiles = 0;
+    let countOfInsideTiles = 0;
     lines.forEach((row, rowIndex) => {
         let edgeCrossingsInRow = 0;
         row.split("").forEach((cell, colIndex) => {
@@ -46,12 +46,12 @@ function countInside(
                 }
             } else {
                 if (edgeCrossingsInRow % 2 === 1) {
-                    countOfInsigeTiles += 1;
+                    countOfInsideTiles += 1;
                 }
             }
         });
     });
-    return countOfInsigeTiles;
+    return countOfInsideTiles;
 }
 
 export async function runSolution(): Promise<number> {

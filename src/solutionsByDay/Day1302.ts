@@ -31,8 +31,8 @@ function getNumberOfDifferencesPerChar(lineA: string, lineB: string): number {
     return differences;
 }
 
-function getRefelctionIndex(pattern: string[]): number {
-    let refelctionIndex: number = -1;
+function getReflectionIndex(pattern: string[]): number {
+    let reflectionIndex: number = -1;
     for (let index = 0; index < pattern.length; index++) {
         let smudgeCount = 0;
         if (index < pattern.length - 1) {
@@ -54,14 +54,14 @@ function getRefelctionIndex(pattern: string[]): number {
                     }
                 }
                 if (isMirrored && smudgeCount === 1) {
-                    refelctionIndex = index;
+                    reflectionIndex = index;
                     break;
                 }
             }
         }
     }
 
-    return refelctionIndex;
+    return reflectionIndex;
 }
 
 export async function runSolution(): Promise<number> {
@@ -71,11 +71,11 @@ export async function runSolution(): Promise<number> {
     let result = 0;
 
     patterns.forEach((pattern) => {
-        let index = getRefelctionIndex(pattern);
+        let index = getReflectionIndex(pattern);
         if (index !== -1) {
             result += (index + 1) * 100;
         } else {
-            index = getRefelctionIndex(transposeArray(pattern));
+            index = getReflectionIndex(transposeArray(pattern));
             result += index + 1;
         }
     });

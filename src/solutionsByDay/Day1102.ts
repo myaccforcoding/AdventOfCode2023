@@ -6,10 +6,10 @@ interface Coordinate {
     y: number;
 }
 
-function getIndciesWithoutGalaxies(curentInput: string[]): number[] {
+function getIndicesWithoutGalaxies(currentInput: string[]): number[] {
     const indicesWithoutGalaxies: number[] = [];
 
-    curentInput.forEach((line, index) => {
+    currentInput.forEach((line, index) => {
         if (!line.includes("#")) {
             indicesWithoutGalaxies.push(index);
         }
@@ -41,20 +41,20 @@ function getGalaxyCoordinates(lines: string[]): Coordinate[] {
 export async function runSolution(): Promise<number> {
     let lines = await readLocalFile("src\\inputFiles\\Day11.txt");
 
-    const rowIndicesWithoutGalaxies = getIndciesWithoutGalaxies(lines);
+    const rowIndicesWithoutGalaxies = getIndicesWithoutGalaxies(lines);
 
     lines = transposeArray(lines);
 
-    const columnIndicesWithoutGalaxies = getIndciesWithoutGalaxies(lines);
+    const columnIndicesWithoutGalaxies = getIndicesWithoutGalaxies(lines);
 
-    // reverses the transponse so rowIndicesWithoutGalaxies and columnIndicesWithoutGalaxies are actually correct
+    // reverses the transpose so rowIndicesWithoutGalaxies and columnIndicesWithoutGalaxies are actually correct
     lines = transposeArray(lines);
 
     const coordinates = getGalaxyCoordinates(lines);
 
     let totalDistance: number = 0;
 
-    const emptyMultiplyer = 1000000;
+    const emptyMultiplier = 1000000;
     let numberOfEmptyRowsAndColumnsCrossed = 0;
 
     for (let i = 0; i < coordinates.length; i++) {
@@ -81,7 +81,7 @@ export async function runSolution(): Promise<number> {
                 Math.abs(coordinates[i].y - coordinates[j].y);
         }
     }
-    totalDistance += emptyMultiplyer * numberOfEmptyRowsAndColumnsCrossed;
-    totalDistance -= numberOfEmptyRowsAndColumnsCrossed; // since empty rows and columns are not expanded but replaced we need to substract 1 step for each since we still calculated the distance with 1 step each
+    totalDistance += emptyMultiplier * numberOfEmptyRowsAndColumnsCrossed;
+    totalDistance -= numberOfEmptyRowsAndColumnsCrossed; // since empty rows and columns are not expanded but replaced we need to subtract 1 step for each since we still calculated the distance with 1 step each
     return totalDistance;
 }
