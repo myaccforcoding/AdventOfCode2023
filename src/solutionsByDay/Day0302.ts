@@ -18,7 +18,7 @@ export async function runSolution(): Promise<number> {
         x: number,
         y: number,
         adjacentNumber: number,
-    ) {
+    ): void {
         const existingEntryIndex = allStarsAndAdjacentNumbers.findIndex(
             (starEntry) =>
                 starEntry.starCoordinates.x === x &&
