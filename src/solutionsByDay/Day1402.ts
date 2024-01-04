@@ -1,27 +1,16 @@
 import { readLocalFile } from "../helper/localFileReader";
 import { transposeArray } from "../helper/transposeArray";
 
-function moveRocksPerLineInGivenDirection(
-    input: string,
-    direction: number = 1,
-): string {
+function moveRocksPerLineInGivenDirection(input: string, direction: number = 1): string {
     const countOfRoundRocks = input.match(/O/g)?.length;
 
     let moved = input;
-    if (
-        countOfRoundRocks !== null &&
-        countOfRoundRocks !== undefined &&
-        countOfRoundRocks > 0
-    ) {
+    if (countOfRoundRocks !== null && countOfRoundRocks !== undefined && countOfRoundRocks > 0) {
         const countOfSpaces = input.length - countOfRoundRocks;
         if (direction > 0) {
-            moved = "O"
-                .repeat(countOfRoundRocks)
-                .concat(".".repeat(countOfSpaces));
+            moved = "O".repeat(countOfRoundRocks).concat(".".repeat(countOfSpaces));
         } else {
-            moved = "."
-                .repeat(countOfSpaces)
-                .concat("O".repeat(countOfRoundRocks));
+            moved = ".".repeat(countOfSpaces).concat("O".repeat(countOfRoundRocks));
         }
     }
     return moved;
@@ -31,13 +20,7 @@ function tiltPlatform(input: string[], tiltDirection: number): string[] {
     const tiltedInput: string[] = [];
     input.forEach((line) => {
         const split = line.split("#");
-        tiltedInput.push(
-            split
-                .map((subStr) =>
-                    moveRocksPerLineInGivenDirection(subStr, tiltDirection),
-                )
-                .join("#"),
-        );
+        tiltedInput.push(split.map((subStr) => moveRocksPerLineInGivenDirection(subStr, tiltDirection)).join("#"));
     });
 
     return tiltedInput;
@@ -79,8 +62,7 @@ export async function runSolution(): Promise<number> {
     rotatedLines.forEach((line, index) => {
         const numberOfRoundRocksInLine = line.match(/O/g);
         if (numberOfRoundRocksInLine !== null) {
-            result +=
-                numberOfRoundRocksInLine.length * (rotatedLines.length - index);
+            result += numberOfRoundRocksInLine.length * (rotatedLines.length - index);
         }
     });
 

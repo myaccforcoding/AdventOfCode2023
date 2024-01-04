@@ -32,16 +32,12 @@ function determineHandCategory(handAndBid: HandAndBid): void {
     } else if (
         (Object.values(countByChar).some((count) => count === 3) &&
             Object.values(countByChar).some((count) => count === 2)) ||
-        (Object.values(countByChar).filter((count) => count === 2).length ===
-            2 &&
-            jokerCount === 1)
+        (Object.values(countByChar).filter((count) => count === 2).length === 2 && jokerCount === 1)
     ) {
         fullHouseCategory.push(handAndBid);
     } else if (maxCountOfSameCardsWithoutJoker + jokerCount === 3) {
         threeOfAKindCategory.push(handAndBid);
-    } else if (
-        Object.values(countByChar).filter((count) => count === 2).length === 2
-    ) {
+    } else if (Object.values(countByChar).filter((count) => count === 2).length === 2) {
         twoPairsCategory.push(handAndBid);
     } else if (maxCountOfSameCardsWithoutJoker + jokerCount === 2) {
         onePairCategory.push(handAndBid);
@@ -61,10 +57,8 @@ function cardHandComparer(cardHandA: string, cardHandB: string): number {
         const charA = cardHandA[i];
         const charB = cardHandB[i];
 
-        const orderOfCardFromHandA =
-            cardOrderFromHighestToLowest.indexOf(charA);
-        const orderOfCardFromHandB =
-            cardOrderFromHighestToLowest.indexOf(charB);
+        const orderOfCardFromHandA = cardOrderFromHighestToLowest.indexOf(charA);
+        const orderOfCardFromHandB = cardOrderFromHighestToLowest.indexOf(charB);
 
         if (orderOfCardFromHandA !== orderOfCardFromHandB) {
             return Math.sign(orderOfCardFromHandA - orderOfCardFromHandB);
@@ -97,15 +91,9 @@ export async function runSolution(): Promise<number> {
     threeOfAKindCategory.sort((handAndBidA, handAndBidB) =>
         cardHandComparer(handAndBidA.handCards, handAndBidB.handCards),
     );
-    twoPairsCategory.sort((handAndBidA, handAndBidB) =>
-        cardHandComparer(handAndBidA.handCards, handAndBidB.handCards),
-    );
-    onePairCategory.sort((handAndBidA, handAndBidB) =>
-        cardHandComparer(handAndBidA.handCards, handAndBidB.handCards),
-    );
-    highCardCategory.sort((handAndBidA, handAndBidB) =>
-        cardHandComparer(handAndBidA.handCards, handAndBidB.handCards),
-    );
+    twoPairsCategory.sort((handAndBidA, handAndBidB) => cardHandComparer(handAndBidA.handCards, handAndBidB.handCards));
+    onePairCategory.sort((handAndBidA, handAndBidB) => cardHandComparer(handAndBidA.handCards, handAndBidB.handCards));
+    highCardCategory.sort((handAndBidA, handAndBidB) => cardHandComparer(handAndBidA.handCards, handAndBidB.handCards));
 
     const allHandsAndBidsSorted = [
         ...fiveOfAKindCategory,

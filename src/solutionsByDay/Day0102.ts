@@ -1,16 +1,6 @@
 import { readLocalFile } from "../helper/localFileReader";
 
-const stringNumbers = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-];
+const stringNumbers = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -34,10 +24,7 @@ export async function runSolution(): Promise<number> {
     const lines = await readLocalFile("src\\inputFiles\\Day01.txt");
 
     lines.forEach((line) => {
-        const firstNumberMatchRegex = new RegExp(
-            possibleMatches.join("|"),
-            "i",
-        );
+        const firstNumberMatchRegex = new RegExp(possibleMatches.join("|"), "i");
         const firstMatchInLine = line.match(firstNumberMatchRegex);
 
         const results = [];
@@ -51,10 +38,7 @@ export async function runSolution(): Promise<number> {
         }
 
         const reversedInput = line.split("").reverse().join("");
-        const reversedRegex = new RegExp(
-            possibleMatches.join("|").split("").reverse().join(""),
-            "i",
-        );
+        const reversedRegex = new RegExp(possibleMatches.join("|").split("").reverse().join(""), "i");
 
         const lastMatchInLine = reversedInput.match(reversedRegex);
 

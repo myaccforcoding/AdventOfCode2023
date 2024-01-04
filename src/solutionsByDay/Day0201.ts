@@ -24,9 +24,7 @@ export async function runSolution(): Promise<number> {
         cubesCountAndColor.forEach((cube) => {
             const [count, color] = cube.split(" ");
             currentCubeCountPerColor[color] =
-                parseInt(count) > currentCubeCountPerColor[color]
-                    ? parseInt(count)
-                    : currentCubeCountPerColor[color];
+                parseInt(count) > currentCubeCountPerColor[color] ? parseInt(count) : currentCubeCountPerColor[color];
         });
 
         if (

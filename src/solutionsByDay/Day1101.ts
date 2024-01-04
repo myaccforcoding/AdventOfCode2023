@@ -23,14 +23,12 @@ function getGalaxyCoordinates(lines: string[]): Coordinate[] {
     const allGalaxiesCoordinates: Coordinate[] = [];
 
     lines.forEach((line, index) => {
-        const galaxiesXCoordinate = line
-            .split("")
-            .reduce((coordinates: number[], char, index) => {
-                if (char === "#") {
-                    coordinates.push(index);
-                }
-                return coordinates;
-            }, []);
+        const galaxiesXCoordinate = line.split("").reduce((coordinates: number[], char, index) => {
+            if (char === "#") {
+                coordinates.push(index);
+            }
+            return coordinates;
+        }, []);
         galaxiesXCoordinate.forEach((x) => {
             allGalaxiesCoordinates.push({ x, y: index });
         });
@@ -55,8 +53,7 @@ export async function runSolution(): Promise<number> {
     for (let i = 0; i < coordinates.length; i++) {
         for (let j = i + 1; j < coordinates.length; j++) {
             totalDistance +=
-                Math.abs(coordinates[i].x - coordinates[j].x) +
-                Math.abs(coordinates[i].y - coordinates[j].y);
+                Math.abs(coordinates[i].x - coordinates[j].x) + Math.abs(coordinates[i].y - coordinates[j].y);
         }
     }
 

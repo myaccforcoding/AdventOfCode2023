@@ -11,18 +11,10 @@ interface SourceToDestinationMap {
     range: number;
 }
 
-function parseMapping(
-    mapIdentifier: string,
-    lines: string[],
-): SourceToDestinationMap[] {
-    const startMapIndex = lines.findIndex((line) =>
-        line.startsWith(mapIdentifier),
-    );
-    const endMapIndex = lines.findIndex(
-        (line, index) => index > startMapIndex && line.trim() === "",
-    );
-    const effectiveEndMapIndex =
-        endMapIndex !== -1 ? endMapIndex : lines.length;
+function parseMapping(mapIdentifier: string, lines: string[]): SourceToDestinationMap[] {
+    const startMapIndex = lines.findIndex((line) => line.startsWith(mapIdentifier));
+    const endMapIndex = lines.findIndex((line, index) => index > startMapIndex && line.trim() === "");
+    const effectiveEndMapIndex = endMapIndex !== -1 ? endMapIndex : lines.length;
 
     const mapLines = lines.slice(startMapIndex + 1, effectiveEndMapIndex);
 
@@ -39,16 +31,12 @@ function parseMapping(
     return sourceToDestinationMap;
 }
 
-function getMappingValue(
-    maps: SourceToDestinationMap[],
-    destinationValue: number,
-): number {
+function getMappingValue(maps: SourceToDestinationMap[], destinationValue: number): number {
     let result: number = destinationValue;
     for (let mapIndex = 0; mapIndex < maps.length; mapIndex++) {
         if (
             maps[mapIndex].destinationStart <= destinationValue &&
-            maps[mapIndex].destinationStart + maps[mapIndex].range >=
-                destinationValue
+            maps[mapIndex].destinationStart + maps[mapIndex].range >= destinationValue
         ) {
             const offset = destinationValue - maps[mapIndex].destinationStart;
             result = maps[mapIndex].sourceStart + offset;
@@ -76,23 +64,11 @@ export async function runSolution(): Promise<number> {
         });
     }
 
-    const humidityToLocationMap = parseMapping(
-        "humidity-to-location map:",
-        lines,
-    );
-    const temperatureToHumidityMap = parseMapping(
-        "temperature-to-humidity map:",
-        lines,
-    );
-    const lightToTemperatureMap = parseMapping(
-        "light-to-temperature map:",
-        lines,
-    );
+    const humidityToLocationMap = parseMapping("humidity-to-location map:", lines);
+    const temperatureToHumidityMap = parseMapping("temperature-to-humidity map:", lines);
+    const lightToTemperatureMap = parseMapping("light-to-temperature map:", lines);
     const waterToLightMap = parseMapping("water-to-light map:", lines);
-    const fertilizerToWaterMap = parseMapping(
-        "fertilizer-to-water map:",
-        lines,
-    );
+    const fertilizerToWaterMap = parseMapping("fertilizer-to-water map:", lines);
     const soilToFertilizerMap = parseMapping("soil-to-fertilizer map:", lines);
     const seedToSoilMap = parseMapping("seed-to-soil map:", lines);
 

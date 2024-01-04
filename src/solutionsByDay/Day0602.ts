@@ -30,10 +30,7 @@ export async function runSolution(): Promise<number> {
     const raceTime = parseInt(lines[0].replace(/\D/g, ""));
     const raceRecordDistance = parseInt(lines[1].replace(/\D/g, ""));
     let solution = 1;
-    const possibleNumberOfWaysToWin = findWaysToWin(
-        raceTime,
-        raceRecordDistance,
-    );
+    const possibleNumberOfWaysToWin = findWaysToWin(raceTime, raceRecordDistance);
     solution *= possibleNumberOfWaysToWin;
     return solution;
 }

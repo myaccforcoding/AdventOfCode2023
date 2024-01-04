@@ -8,9 +8,7 @@ export async function runSolution(): Promise<number> {
     const graph: Record<string, string[]> = {};
 
     lines.splice(2).forEach((line) => {
-        const graphNodeData = [...line.matchAll(threeLetterRegex)].map(
-            (m) => m[0],
-        );
+        const graphNodeData = [...line.matchAll(threeLetterRegex)].map((m) => m[0]);
         graph[graphNodeData[0]] = [graphNodeData[1], graphNodeData[2]];
     });
 

@@ -25,10 +25,7 @@ function getReflectionIndex(pattern: string[]): number {
     let reflectionIndex: number = -1;
 
     for (let index = 0; index < pattern.length; index++) {
-        if (
-            index < pattern.length - 1 &&
-            pattern[index] === pattern[index + 1]
-        ) {
+        if (index < pattern.length - 1 && pattern[index] === pattern[index + 1]) {
             const width = Math.min(index, pattern.length - (index + 2));
             let isMirrored = true;
             for (let i = 1; i <= width; i++) {

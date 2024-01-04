@@ -47,9 +47,7 @@ export async function runSolution(): Promise<number> {
 
             let existingIndex = -1;
             if (boxesAndLenses[boxId].length >= 0) {
-                existingIndex = boxesAndLenses[boxId].findIndex(
-                    (lense) => lense.label === lensLabel,
-                );
+                existingIndex = boxesAndLenses[boxId].findIndex((lense) => lense.label === lensLabel);
             }
             if (operation !== null) {
                 if (operation === "-") {
@@ -58,8 +56,7 @@ export async function runSolution(): Promise<number> {
                     }
                 } else {
                     if (existingIndex >= 0) {
-                        boxesAndLenses[boxId][existingIndex].focalLength =
-                            parseInt(operation);
+                        boxesAndLenses[boxId][existingIndex].focalLength = parseInt(operation);
                     } else {
                         boxesAndLenses[boxId].push({
                             label: lensLabel,

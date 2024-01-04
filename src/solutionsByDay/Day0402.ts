@@ -22,15 +22,9 @@ export async function runSolution(): Promise<number> {
 
         const cardIdIndex = line.indexOf(":");
         const scratchcardContent = line.substring(cardIdIndex + 1).split("|");
-        const myNumbers = scratchcardContent[0]
-            .split(" ")
-            .filter((element) => element !== "");
-        const winningNumbers = scratchcardContent[1]
-            .split(" ")
-            .filter((element) => element !== "");
-        const matchingNumbers = winningNumbers.filter((value) =>
-            myNumbers.includes(value),
-        );
+        const myNumbers = scratchcardContent[0].split(" ").filter((element) => element !== "");
+        const winningNumbers = scratchcardContent[1].split(" ").filter((element) => element !== "");
+        const matchingNumbers = winningNumbers.filter((value) => myNumbers.includes(value));
 
         for (let i = 1; i <= matchingNumbers.length; i++) {
             if (

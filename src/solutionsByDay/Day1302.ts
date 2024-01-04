@@ -36,18 +36,12 @@ function getReflectionIndex(pattern: string[]): number {
     for (let index = 0; index < pattern.length; index++) {
         let smudgeCount = 0;
         if (index < pattern.length - 1) {
-            smudgeCount += getNumberOfDifferencesPerChar(
-                pattern[index],
-                pattern[index + 1],
-            );
+            smudgeCount += getNumberOfDifferencesPerChar(pattern[index], pattern[index + 1]);
             if (pattern[index] === pattern[index + 1] || smudgeCount === 1) {
                 const width = Math.min(index, pattern.length - (index + 2));
                 let isMirrored = true;
                 for (let i = 1; i <= width; i++) {
-                    smudgeCount += getNumberOfDifferencesPerChar(
-                        pattern[index - i],
-                        pattern[index + i + 1],
-                    );
+                    smudgeCount += getNumberOfDifferencesPerChar(pattern[index - i], pattern[index + i + 1]);
                     if (smudgeCount > 1) {
                         isMirrored = false;
                         break;

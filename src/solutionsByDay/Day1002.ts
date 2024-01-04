@@ -27,19 +27,13 @@ const connectionMap: ConnectionMap = {
     F: [bottom, right],
 };
 
-function countInside(
-    lines: string[],
-    loopEdges: Coordinate[],
-    startNodeSymbol: string,
-): number {
+function countInside(lines: string[], loopEdges: Coordinate[], startNodeSymbol: string): number {
     let countOfInsideTiles = 0;
     lines.forEach((row, rowIndex) => {
         let edgeCrossingsInRow = 0;
         row.split("").forEach((cell, colIndex) => {
             cell = cell === "S" ? startNodeSymbol : cell;
-            const isEdge = loopEdges.some(
-                (edge) => edge.y === rowIndex && edge.x === colIndex,
-            );
+            const isEdge = loopEdges.some((edge) => edge.y === rowIndex && edge.x === colIndex);
             if (isEdge) {
                 if (["|", "L", "J"].includes(cell)) {
                     edgeCrossingsInRow += 1;
@@ -148,26 +142,20 @@ export async function runSolution(): Promise<number> {
         }
     }
 
-    const loopCoordinates = new Set<Coordinate>(
-        currentNodes.map((node) => node.nodeCoordinate),
-    );
+    const loopCoordinates = new Set<Coordinate>(currentNodes.map((node) => node.nodeCoordinate));
     loopCoordinates.add(startCoordinates);
 
     while (currentNodes.every((element) => element.symbol !== "S")) {
         const newCurrentNodes: Node[] = [];
         const connections = connectionMap[currentNodes[0].symbol];
         const nextNodeConnection = connections.filter(
-            (connection) =>
-                !connection.every(
-                    (value, index) => value === currentNodes[0].previous[index],
-                ),
+            (connection) => !connection.every((value, index) => value === currentNodes[0].previous[index]),
         )[0];
         const nextNodeCoordinates: Coordinate = {
             x: currentNodes[0].nodeCoordinate.x + nextNodeConnection[0],
             y: currentNodes[0].nodeCoordinate.y + nextNodeConnection[1],
         };
-        const nextNodeSymbol =
-            lines[nextNodeCoordinates.y][nextNodeCoordinates.x];
+        const nextNodeSymbol = lines[nextNodeCoordinates.y][nextNodeCoordinates.x];
         const nextNodePrevious = [
             currentNodes[0].nodeCoordinate.x - nextNodeCoordinates.x,
             currentNodes[0].nodeCoordinate.y - nextNodeCoordinates.y,

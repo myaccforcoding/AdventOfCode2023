@@ -4,10 +4,7 @@ type KeyValuePair = Record<string, number>;
 
 const knownPatternsAndPossibleArrangementCount: KeyValuePair = {};
 
-function calculatePossibleArrangements(
-    springPattern: string,
-    defectSprings: number[],
-): number {
+function calculatePossibleArrangements(springPattern: string, defectSprings: number[]): number {
     const key = `${springPattern}-${defectSprings.join(",")}`;
     if (key in knownPatternsAndPossibleArrangementCount) {
         return knownPatternsAndPossibleArrangementCount[key];
@@ -20,24 +17,12 @@ function calculatePossibleArrangements(
     } else if (defectSprings.length === 0 && springPattern.includes("#")) {
         result = 0;
     } else if (springPattern.startsWith(".")) {
-        result += calculatePossibleArrangements(
-            springPattern.substring(1),
-            defectSprings,
-        );
+        result += calculatePossibleArrangements(springPattern.substring(1), defectSprings);
     } else if (springPattern.startsWith("?")) {
-        result += calculatePossibleArrangements(
-            springPattern.replace("?", "."),
-            defectSprings,
-        );
-        result += calculatePossibleArrangements(
-            springPattern.replace("?", "#"),
-            defectSprings,
-        );
+        result += calculatePossibleArrangements(springPattern.replace("?", "."), defectSprings);
+        result += calculatePossibleArrangements(springPattern.replace("?", "#"), defectSprings);
     } else if (springPattern.startsWith("#")) {
-        if (
-            !springPattern.substring(0, defectSprings[0]).includes(".") &&
-            springPattern.length >= defectSprings[0]
-        ) {
+        if (!springPattern.substring(0, defectSprings[0]).includes(".") && springPattern.length >= defectSprings[0]) {
             // group of valid size found
 
             if (
@@ -69,10 +54,7 @@ export async function runSolution(): Promise<number> {
     lines.forEach((line) => {
         const [springPattern, listOfDefectSprings] = line.split(" ");
         const defectSprings = listOfDefectSprings.split(",").map(Number);
-        totalCount += calculatePossibleArrangements(
-            springPattern,
-            defectSprings,
-        );
+        totalCount += calculatePossibleArrangements(springPattern, defectSprings);
     });
 
     return totalCount;

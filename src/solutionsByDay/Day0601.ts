@@ -39,10 +39,7 @@ export async function runSolution(): Promise<number> {
     let solution = 1;
 
     races.forEach((race) => {
-        const possibleNumberOfWaysToWin = findWaysToWin(
-            race.time,
-            race.recordDistance,
-        );
+        const possibleNumberOfWaysToWin = findWaysToWin(race.time, race.recordDistance);
         solution *= possibleNumberOfWaysToWin;
     });
 

@@ -102,17 +102,13 @@ export async function runSolution(): Promise<number> {
         currentNodes.forEach((node) => {
             const connections = connectionMap[node.symbol];
             const nextNodeConnection = connections.filter(
-                (connection) =>
-                    !connection.every(
-                        (value, index) => value === node.previous[index],
-                    ),
+                (connection) => !connection.every((value, index) => value === node.previous[index]),
             )[0];
             const nextNodeCoordinates: Coordinate = {
                 x: node.nodeCoordinate.x + nextNodeConnection[0],
                 y: node.nodeCoordinate.y + nextNodeConnection[1],
             };
-            const nextNodeSymbol =
-                lines[nextNodeCoordinates.y][nextNodeCoordinates.x];
+            const nextNodeSymbol = lines[nextNodeCoordinates.y][nextNodeCoordinates.x];
             const nextNodePrevious = [
                 node.nodeCoordinate.x - nextNodeCoordinates.x,
                 node.nodeCoordinate.y - nextNodeCoordinates.y,

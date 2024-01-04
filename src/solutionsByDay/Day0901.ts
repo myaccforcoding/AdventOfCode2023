@@ -5,9 +5,7 @@ function extrapolate(sequence: number[]): number {
 
     while (!sequence.every((element) => element === 0)) {
         lastOfEachSequence.push(sequence[sequence.length - 1]);
-        sequence = sequence
-            .slice(1)
-            .map((number, index) => number - sequence[index]);
+        sequence = sequence.slice(1).map((number, index) => number - sequence[index]);
     }
 
     let newLastElement = 0;

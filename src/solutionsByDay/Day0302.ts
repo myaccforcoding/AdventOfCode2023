@@ -14,21 +14,13 @@ export async function runSolution(): Promise<number> {
     let totalSum = 0;
     const allStarsAndAdjacentNumbers: StarsAndAdjacentNumbers[] = [];
 
-    function processAdjacentNumbers(
-        x: number,
-        y: number,
-        adjacentNumber: number,
-    ): void {
+    function processAdjacentNumbers(x: number, y: number, adjacentNumber: number): void {
         const existingEntryIndex = allStarsAndAdjacentNumbers.findIndex(
-            (starEntry) =>
-                starEntry.starCoordinates.x === x &&
-                starEntry.starCoordinates.y === y,
+            (starEntry) => starEntry.starCoordinates.x === x && starEntry.starCoordinates.y === y,
         );
 
         if (existingEntryIndex >= 0) {
-            allStarsAndAdjacentNumbers[existingEntryIndex].adjacentNumbers.push(
-                adjacentNumber,
-            );
+            allStarsAndAdjacentNumbers[existingEntryIndex].adjacentNumbers.push(adjacentNumber);
         } else {
             allStarsAndAdjacentNumbers.push({
                 adjacentNumbers: [adjacentNumber],
@@ -42,10 +34,7 @@ export async function runSolution(): Promise<number> {
         while ((number = numberRegex.exec(line)) !== null) {
             const currentNumber = parseInt(number[0]); // Convert to number
             const startX = Math.max(0, number.index - 1);
-            const endX = Math.min(
-                number.index + number[0].length + 1,
-                line.length,
-            );
+            const endX = Math.min(number.index + number[0].length + 1, line.length);
 
             for (let x = startX; x < endX; x++) {
                 if (y > 0 && lines[y - 1][x] === "*") {
@@ -56,10 +45,7 @@ export async function runSolution(): Promise<number> {
                     processAdjacentNumbers(x, y, currentNumber);
                 }
 
-                if (
-                    lines[y][x] === "*" &&
-                    x !== number.index + number[0].length
-                ) {
+                if (lines[y][x] === "*" && x !== number.index + number[0].length) {
                     processAdjacentNumbers(x, y, currentNumber);
                 }
 
@@ -70,9 +56,7 @@ export async function runSolution(): Promise<number> {
         }
     });
 
-    const gears = allStarsAndAdjacentNumbers.filter(
-        (star) => star.adjacentNumbers.length === 2,
-    );
+    const gears = allStarsAndAdjacentNumbers.filter((star) => star.adjacentNumbers.length === 2);
 
     gears.forEach((gear) => {
         totalSum += gear.adjacentNumbers[0] * gear.adjacentNumbers[1];
