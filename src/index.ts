@@ -33,7 +33,7 @@ import * as Day1601 from "./solutionsByDay/Day1601";
 import * as Day1602 from "./solutionsByDay/Day1602";
 
 async function logSolution(): Promise<void> {
-    console.log(await Day1601.runSolution());
+    console.log(await Day1602.runSolution());
 }
 
 logSolution().catch((err) => {

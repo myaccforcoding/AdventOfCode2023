@@ -244,13 +244,13 @@ describe("Day 15", () => {
 describe("Day 16", () => {
     test("Part 01", async () => {
         const actual = await Day1601.runSolution();
-        const expected = 513172;
+        const expected = 7046;
         expect(actual).toBe(expected);
     });
 
     test("Part 02", async () => {
         const actual = await Day1602.runSolution();
-        const expected = 237806;
+        const expected = 7313;
         expect(actual).toBe(expected);
     });
 });
